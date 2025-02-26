@@ -45,4 +45,13 @@ public class Candidato {
         System.out.println("Número do Partido: " + número_do_partido);
     }
 
+    public Candidato(String nome_completo, String data_de_Nascimento, String genero, String cargo_pretendido, float total_de_bens, boolean reeleicao, int número_do_partido) {
+        this.nome_completo = nome_completo;
+        this.data_de_Nascimento = data_de_Nascimento;
+        this.genero = genero;
+        this.cargo_pretendido = cargo_pretendido;
+        this.total_de_bens = total_de_bens;
+        this.reeleicao = reeleicao;
+        this.número_do_partido = número_do_partido;
+    }
 }
