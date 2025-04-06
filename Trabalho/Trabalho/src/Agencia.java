@@ -6,6 +6,7 @@ public class Agencia {
     private String estado;
     private String bairro;
     private Gerente gerente;
+    private Funcionario[] funcionarios;
 
     public Agencia(String nmrAgencia, String nmAgencia, String endereco, String cidade, String estado, String bairro, Gerente gerente, Funcionario[] funcionarios) {
         NmrAgencia = nmrAgencia;
@@ -14,6 +15,13 @@ public class Agencia {
         this.cidade = cidade;
         this.estado = estado;
         this.bairro = bairro;
+        this.funcionarios = funcionarios;
+        if (gerente.getAgencia() != null) {
+            throw new IllegalArgumentException("Este gerente já está associado a outra agência.");
+        }
+        // Cada agência possui um gerente,
+        // que é um funcionário nomeado para tal tarefa. Cada gerente pode
+        // gerenciar apenas uma agência.
         this.gerente = gerente;
         this.funcionarios = funcionarios;
     }
@@ -55,6 +63,9 @@ public class Agencia {
     }
 
     public void setGerente(Gerente gerente) {
+        if (this.gerente != null) {
+            throw new IllegalStateException("Esta agência já possui um gerente.");
+        }
         this.gerente = gerente;
     }
 
@@ -82,5 +93,4 @@ public class Agencia {
         this.cidade = cidade;
     }
 
-    private Funcionario[] funcionarios;
 }

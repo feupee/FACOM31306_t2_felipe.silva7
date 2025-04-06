@@ -7,6 +7,6 @@ public abstract class Notificacao {
         this.transacao = transacao;
     }
 
-    // Método abstrato a ser implementado nas subclasses
+    // Metodo abstrato a ser implementado nas subclasses
     public abstract void enviarNotificacao();
 }

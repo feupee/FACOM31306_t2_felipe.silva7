@@ -1,13 +1,13 @@
 public abstract class ValidadorCPF {
 
-    // Função para remover caracteres não numéricos
+    // Funcao para remover caracteres nao numericos
     private static String removerCaracteresNaoNumericos(String cpf) {
         return cpf.replaceAll("[^0-9]", "");
     }
 
     // Função para validar CPF
     public static boolean validarCPF(String cpf) {
-        // Remover caracteres não numéricos
+        // Remover caracteres nao numericos
         cpf = removerCaracteresNaoNumericos(cpf);
 
         // Verificar se o CPF tem 11 dígitos
@@ -15,7 +15,7 @@ public abstract class ValidadorCPF {
             return false;
         }
 
-        // Verificar se todos os números são iguais (ex: 111.111.111-11)
+        // Verificar se todos os numeros sao iguais (ex: 111.111.111-11)
         if (cpf.equals("00000000000") || cpf.equals("11111111111") || cpf.equals("22222222222") ||
                 cpf.equals("33333333333") || cpf.equals("44444444444") || cpf.equals("55555555555") ||
                 cpf.equals("66666666666") || cpf.equals("77777777777") || cpf.equals("88888888888") ||
@@ -23,7 +23,7 @@ public abstract class ValidadorCPF {
             return false;
         }
 
-        // Cálculo do primeiro dígito verificador
+        // Calculo do primeiro digito verificador
         int soma1 = 0;
         for (int i = 0; i < 9; i++) {
             soma1 += Integer.parseInt(String.valueOf(cpf.charAt(i))) * (10 - i);
@@ -33,7 +33,7 @@ public abstract class ValidadorCPF {
             digito1 = 0;
         }
 
-        // Cálculo do segundo dígito verificador
+        // Calculo do segundo dígito verificador
         int soma2 = 0;
         for (int i = 0; i < 10; i++) {
             soma2 += Integer.parseInt(String.valueOf(cpf.charAt(i))) * (11 - i);
@@ -43,7 +43,7 @@ public abstract class ValidadorCPF {
             digito2 = 0;
         }
 
-        // Verificar se os dígitos verificadores estão corretos
+        // Verificar se os digitos verificadores estao corretos
         return cpf.charAt(9) == (char) (digito1 + '0') && cpf.charAt(10) == (char) (digito2 + '0');
     }
 }
