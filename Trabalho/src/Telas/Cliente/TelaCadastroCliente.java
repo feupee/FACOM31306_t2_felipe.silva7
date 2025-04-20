@@ -1,18 +1,18 @@
-package Telas;
+package Telas.Cliente;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import Classes.Agencia;
 import Classes.Cliente;
 import ExceptionsAndInterfaces.ValorInvalidoException;
-import Persistencia.PersistenciaDados;
+import Persistencia.BancoDados;
 
 import static Classes.ValidadorCPF.validarCPF;
 
@@ -27,7 +27,7 @@ public class TelaCadastroCliente extends JFrame {
 
     public TelaCadastroCliente() {
         setTitle("Cadastro de Cliente");
-        setSize(500, 400); // Aumentei o tamanho para melhor visualização
+        setSize(500, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
@@ -45,9 +45,6 @@ public class TelaCadastroCliente extends JFrame {
         adicionarComponentes(panelDados);
         panelPrincipal.add(panelDados);
 
-        // Carregar agências (deve ser feito após a criação dos componentes)
-        carregarAgencias();
-
         // Botões
         JPanel panelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         JButton btnConfirmar = new JButton("Confirmar Cadastro");
@@ -55,7 +52,7 @@ public class TelaCadastroCliente extends JFrame {
 
         JButton btnCancelar = new JButton("Cancelar");
         btnCancelar.addActionListener(e -> {
-            new TelaInicial().setVisible(true);
+            new TelaInicialCliente().setVisible(true);
             dispose();
         });
 
@@ -102,8 +99,11 @@ public class TelaCadastroCliente extends JFrame {
         panel.add(txtDataNascimento);
 
         // Agência
+        // Agência
         panel.add(new JLabel("Agência:"));
         comboAgencias = new JComboBox<>();
+
+        // Configurar o renderizador personalizado
         comboAgencias.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index,
@@ -116,28 +116,24 @@ public class TelaCadastroCliente extends JFrame {
                 return this;
             }
         });
+
+        // Carregar as agências no combo box
+        carregarAgenciasNoCombo();
+
         panel.add(comboAgencias);
     }
 
-    private void carregarAgencias() {
-        try {
-            comboAgencias.removeAllItems();
-            for (Agencia agencia : PersistenciaDados.carregarAgencias()) {
-                comboAgencias.addItem(agencia);
-            }
+    // Método para carregar as agências no JComboBox
+    private void carregarAgenciasNoCombo() {
+        // Limpar o combo box antes de carregar
+        comboAgencias.removeAllItems();
 
-            if (comboAgencias.getItemCount() == 0) {
-                JOptionPane.showMessageDialog(this,
-                        "Nenhuma agência cadastrada. Cadastre uma agência primeiro.",
-                        "Aviso", JOptionPane.WARNING_MESSAGE);
-                dispose();
-                new TelaInicial().setVisible(true);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Erro ao carregar agências: " + e.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
+        // Obter todas as agências do banco de dados
+        List<Agencia> agencias = BancoDados.getTodasAgencias();
+
+        // Adicionar cada agência ao combo box
+        for (Agencia agencia : agencias) {
+            comboAgencias.addItem(agencia);
         }
     }
 
@@ -147,12 +143,12 @@ public class TelaCadastroCliente extends JFrame {
             try {
                 validarCampos();
                 Cliente novoCliente = criarCliente();
-                PersistenciaDados.adicionarCliente(novoCliente);
+                BancoDados.adicionarCliente(novoCliente);
 
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!",
                         "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-                new TelaInicial().setVisible(true);
+                new TelaInicialCliente().setVisible(true);
                 dispose();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(),

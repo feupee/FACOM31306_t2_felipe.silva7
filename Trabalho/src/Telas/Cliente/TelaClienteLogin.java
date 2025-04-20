@@ -1,13 +1,17 @@
-package Telas;
+package Telas.Cliente;
 
+import Classes.Cliente;
+import Classes.ContaBancaria;
 import Persistencia.BancoDados;
+import Telas.Conta.TelaInicialContaBancaria;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 // Tela 4: Tela de Login com nome da conta e senha
-class TelaLogin extends JFrame {
-    public TelaLogin() {
+public class TelaClienteLogin extends JFrame {
+    public TelaClienteLogin() {
         setTitle("Login da Conta");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,27 +23,27 @@ class TelaLogin extends JFrame {
         add(txtNomeConta);
 
         add(new JLabel("Senha:"));
-        JPasswordField txtSenha = new JPasswordField();
+        JTextField txtSenha = new JTextField();
         add(txtSenha);
 
         JButton btnEntrar = new JButton("Entrar");
         btnEntrar.addActionListener(e -> {
             String nomeConta = txtNomeConta.getText();
-            String senha = new String(txtSenha.getPassword());
+            String CPF = new String(txtSenha.getText());
 
-            /*if (verificarLogin(nomeConta, senha)) {
+            if (verificarLogin(nomeConta, CPF)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-                new Telas.TelaOperacoes();
+                new TelaInicialContaBancaria();
                 dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Nome da conta ou senha incorretos.");
-            }*/
+            }
         });
         add(btnEntrar);
 
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.addActionListener(e -> {
-            new TelaInicial();
+            new TelaInicialCliente();
             dispose();
         });
         add(btnVoltar);
@@ -48,12 +52,17 @@ class TelaLogin extends JFrame {
 
     }
 
-    /*private boolean verificarLogin(String nomeConta, String senha) {
-        for (String[] conta : (BancoDados.getTodasContas())) {
-            if (conta[0].equals(numeroConta) && conta[1].equals(senha)) {
-                return true;
+    private boolean verificarLogin(String nomeCliente, String CPF) {
+        List<Cliente> clientes = BancoDados.getTodosClientes();
+
+        for (Cliente c : clientes) {
+            // Verifica se o nome e CPF correspondem (ignorando maiúsculas/minúsculas e espaços)
+            if (c.getNome().equalsIgnoreCase(nomeCliente.trim()) &&
+                    c.getCPF().replaceAll("[^0-9]", "").equals(CPF.replaceAll("[^0-9]", ""))) {
+                return true; // Login válido
             }
         }
-        return false;
-    }*/
+
+        return false; // Nenhum cliente encontrado com esses dados
+    }
 }

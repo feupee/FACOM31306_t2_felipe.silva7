@@ -5,9 +5,8 @@ import ExceptionsAndInterfaces.Imprimivel;
 import java.io.Serializable;
 import java.util.Date;
 
-public class ContaPoupanca extends ContaBancaria implements Imprimivel, Serializable {
+public class ContaPoupanca extends ContaBancaria implements Imprimivel{
     private double rendimento_mesAtual;
-    private static final long serialVersionUID = 1L;
 
     public ContaPoupanca(String numeroConta, double saldoInicial, Date dataAbertura, double rendimento_mesAtual, String Senha, boolean status, Agencia agencia, Cliente cliente) {
         super(numeroConta, saldoInicial, dataAbertura, Senha, status, cliente, agencia);

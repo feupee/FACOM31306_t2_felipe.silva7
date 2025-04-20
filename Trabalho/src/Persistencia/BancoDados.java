@@ -1,114 +1,194 @@
 package Persistencia;
 
 import Classes.*;
+import Persistencia.Agencia.AgenciaBinarioIO;
+import Persistencia.Cliente.ClienteBinarioIO;
+import Persistencia.Conta.ContaBancariaBinarioIO;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BancoDados {
-    /*private static List<Agencia> agencias = new ArrayList<>();
+    private static List<Agencia> agencias = new ArrayList<>();
     private static List<Cliente> clientes = new ArrayList<>();
     private static List<ContaBancaria> contas = new ArrayList<>();
-    private static List<Funcionario> funcionarios = new ArrayList<>();
-    private static List<Gerente> gerentes = new ArrayList<>();
 
-    static {
-        carregarDados();
+    public static void carregarTudo() {
+        carregarAgencias();
+        carregarClientes();
+        carregarContas();
+    }
+
+    // Métodos para Agência (já existentes)
+    public static void carregarAgencias() {
+        agencias.clear();
+        int i = 1;
+
+        while (true) {
+            String nomeArquivo = String.format("dados/agencia_%04d.bin", i);
+            File arquivo = new File(nomeArquivo);
+
+            if (!arquivo.exists()) {
+                break;
+            }
+
+            try {
+                Agencia agencia = AgenciaBinarioIO.carregarAgencia(nomeArquivo);
+                agencias.add(agencia);
+            } catch (Exception e) {
+                System.err.println("Erro ao carregar agência: " + nomeArquivo);
+                e.printStackTrace();
+            }
+
+            i++;
+        }
+    }
+
+    public static void salvarAgencia(Agencia agencia, int numeroSequencial) {
+        String nomeArquivo = String.format("dados/agencia_%04d.bin", numeroSequencial);
+        try {
+            AgenciaBinarioIO.salvarAgencia(agencia, nomeArquivo);
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar agência: " + nomeArquivo);
+            e.printStackTrace();
+        }
     }
 
     // Métodos para Cliente
-    public static void adicionarCliente(Cliente cliente) throws IOException {
-        if (clientes.stream().anyMatch(c -> c.getCPF().equals(cliente.getCPF()))) {
-            throw new IllegalArgumentException("CPF já cadastrado");
-        }
-        clientes.add(cliente);
-        PersistenciaDados.salvarClientes(clientes);
-    }
+    public static void carregarClientes() {
+        clientes.clear();
+        int i = 1;
 
-    // Métodos para Agência
-    public static void adicionarAgencia(Agencia agencia) throws IOException {
-        if (agencias.stream().anyMatch(a -> a.getNmAgencia().equals(agencia.getNmAgencia()))) {
-            throw new IllegalArgumentException("Agência já existe");
-        }
-        agencias.add(agencia);
-        PersistenciaDados.salvarAgencias(agencias);
-    }
+        while (true) {
+            String nomeArquivo = String.format("dados/cliente_%04d.bin", i);
+            File arquivo = new File(nomeArquivo);
 
-    // Métodos para Conta Bancária
-    public static void adicionarConta(ContaBancaria conta) throws IOException {
-        if (contas.stream().anyMatch(c -> c.getNumeroConta().equals(conta.getNumeroConta()))) {
-            throw new IllegalArgumentException("Conta já existe");
-        }
-        contas.add(conta);
-        PersistenciaDados.salvarContas(contas);
-    }
-
-    // Métodos para Funcionário
-    public static void adicionarFuncionario(Funcionario funcionario) throws IOException {
-        if (funcionarios.stream().anyMatch(f -> f.getCPF().equals(funcionario.getCPF()))) {
-            throw new IllegalArgumentException("Funcionário já cadastrado");
-        }
-        funcionarios.add(funcionario);
-        PersistenciaDados.salvarFuncionarios(funcionarios);
-    }
-
-    // Métodos para Gerente
-    public static void adicionarGerente(Gerente gerente) throws IOException {
-        if (gerentes.stream().anyMatch(g -> g.getCPF().equals(gerente.getCPF()))) {
-            throw new IllegalArgumentException("Gerente já cadastrado");
-        }
-        gerentes.add(gerente);
-        PersistenciaDados.salvarGerentes(gerentes);
-    }
-
-    // Carregamento inicial dos dados
-    public static void carregarDados() {
-        try {
-            agencias = PersistenciaDados.carregarAgencias();
-            clientes = PersistenciaDados.carregarClientes();
-            contas = PersistenciaDados.carregarContas();
-            funcionarios = PersistenciaDados.carregarFuncionarios();
-            gerentes = PersistenciaDados.carregarGerentes();
-
-            // Vincular gerentes às agências
-            for (Gerente gerente : gerentes) {
-                if (gerente.getAgencia_gerenciada() != null) {
-                    agencias.stream()
-                            .filter(a -> a.getNmAgencia().equals(gerente.getAgencia_gerenciada().getNmAgencia()))
-                            .findFirst()
-                            .ifPresent(a -> a.setGerente(gerente));
-                }
+            if (!arquivo.exists()) {
+                break;
             }
 
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Erro ao carregar dados: " + e.getMessage());
-            // Inicializa listas vazias se ocorrer erro
-            agencias = new ArrayList<>();
-            clientes = new ArrayList<>();
-            contas = new ArrayList<>();
-            funcionarios = new ArrayList<>();
-            gerentes = new ArrayList<>();
+            try {
+                Cliente cliente = ClienteBinarioIO.carregarCliente(nomeArquivo, agencias);
+                clientes.add(cliente);
+            } catch (Exception e) {
+                System.err.println("Erro ao carregar cliente: " + nomeArquivo);
+                e.printStackTrace();
+            }
+
+            i++;
         }
+    }
+
+    public static void salvarCliente(Cliente cliente, int numeroSequencial) {
+        String nomeArquivo = String.format("dados/cliente_%04d.bin", numeroSequencial);
+        try {
+            ClienteBinarioIO.salvarCliente(cliente, nomeArquivo);
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar cliente: " + nomeArquivo);
+            e.printStackTrace();
+        }
+    }
+
+    // Métodos para Conta
+    public static void carregarContas() {
+        contas.clear();
+        String[] tipos = {"corrente", "poupanca", "salario"};
+
+        for (String tipo : tipos) {
+            int i = 1;
+
+            while (true) {
+                String nomeArquivo = String.format("dados/conta_%s_%04d.bin", tipo, i);
+                File arquivo = new File(nomeArquivo);
+
+                if (!arquivo.exists()) {
+                    break;
+                }
+
+                try {
+                    ContaBancaria conta = ContaBancariaBinarioIO.carregarConta(
+                            nomeArquivo, clientes, agencias);
+                    contas.add(conta);
+                } catch (Exception e) {
+                    System.err.println("Erro ao carregar conta: " + nomeArquivo);
+                    e.printStackTrace();
+                }
+
+                i++;
+            }
+        }
+    }
+
+    public static void salvarConta(ContaBancaria conta, String tipo, int numeroSequencial) {
+        String nomeArquivo = String.format("dados/conta_%s_%04d.bin", tipo, numeroSequencial);
+        try {
+            ContaBancariaBinarioIO.salvarConta(conta, nomeArquivo);
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar conta: " + nomeArquivo);
+            e.printStackTrace();
+        }
+    }
+
+    // Métodos auxiliares para gerenciamento de IDs
+    public static int getProximoIdCliente() {
+        return clientes.size() + 1;
+    }
+
+    public static int getProximoIdConta(String tipo) {
+        int maxId = 0;
+        String prefixo = "conta_" + tipo + "_";
+
+        for (ContaBancaria conta : contas) {
+            if (conta instanceof ContaCorrente && tipo.equals("corrente")) {
+                maxId++;
+            } else if (conta instanceof ContaPoupanca && tipo.equals("poupanca")) {
+                maxId++;
+            } else if (conta instanceof ContaSalario && tipo.equals("salario")) {
+                maxId++;
+            }
+        }
+
+        return maxId + 1;
     }
 
     // Métodos de consulta (getters)
     public static List<Agencia> getTodasAgencias() {
-        return Collections.unmodifiableList(agencias);
+        return agencias;
     }
 
     public static List<Cliente> getTodosClientes() {
-        return Collections.unmodifiableList(clientes);
+        return clientes;
     }
 
     public static List<ContaBancaria> getTodasContas() {
-        return Collections.unmodifiableList(contas);
+        return contas;
     }
 
-    public static List<Funcionario> getTodosFuncionarios() {
-        return Collections.unmodifiableList(funcionarios);
+    // Métodos para adicionar novos itens
+    public static void adicionarAgencia(Agencia agencia) {
+        agencias.add(agencia);
+        salvarAgencia(agencia, agencias.size());
     }
 
-    public static List<Gerente> getTodosGerentes() {
-        return Collections.unmodifiableList(gerentes);
-    }*/
+    public static void adicionarCliente(Cliente cliente) {
+        clientes.add(cliente);
+        salvarCliente(cliente, clientes.size());
+    }
+
+    public static void adicionarConta(ContaBancaria conta) {
+        contas.add(conta);
+        String tipo = "";
+
+        if (conta instanceof ContaCorrente) {
+            tipo = "corrente";
+        } else if (conta instanceof ContaPoupanca) {
+            tipo = "poupanca";
+        } else if (conta instanceof ContaSalario) {
+            tipo = "salario";
+        }
+
+        salvarConta(conta, tipo, getProximoIdConta(tipo));
+    }
 }

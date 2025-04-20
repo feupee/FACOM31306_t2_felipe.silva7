@@ -1,4 +1,4 @@
-package Telas;
+package Telas.Conta;
 
 import Classes.*;
 
@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Date;
 
 public class TelaCadastroConta extends JFrame {
     private JComboBox<String> comboBoxTipoConta;

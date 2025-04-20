@@ -6,13 +6,12 @@ import ExceptionsAndInterfaces.ValorInvalidoException;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Gerente extends Funcionario implements Serializable{
+public class Gerente extends Funcionario{
     private Date ingresso_gerencia;
     private Agencia agencia_gerenciada;
     private Boolean formacaoBasica_gerencia;
     private static double comissao;
 
-    private static final long serialVersionUID = 1L;
 
     public Gerente(String CPF, String nome, String endereco_completo, String estado_civil, String escolaridade, Date data_nascimento, String nro_carteiradeTrabalho, String RG, String cargo_empresa, String salario, String ano_ingresso, String sexo, Date ingresso_gerencia, Agencia agencia_gerenciada, Boolean formacaoBasica_gerencia) throws ValorInvalidoException {
         super(CPF, nome, endereco_completo, estado_civil, escolaridade, data_nascimento, nro_carteiradeTrabalho, RG, cargo_empresa, salario, ano_ingresso, sexo);

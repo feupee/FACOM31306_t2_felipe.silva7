@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Funcionario extends Pessoa implements Serializable {
+public class Funcionario extends Pessoa{
     private String Nro_carteiradeTrabalho;
     private String RG;
     private String sexo;

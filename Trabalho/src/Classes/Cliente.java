@@ -6,9 +6,8 @@ import ExceptionsAndInterfaces.ValorInvalidoException;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Cliente extends Pessoa implements Imprimivel, Serializable {
+public class Cliente extends Pessoa implements Imprimivel{
     private Agencia agencia; // Associação com a agência
-    private static final long serialVersionUID = 1L;
     // CPF,
     // nome,
     // endereço completo,

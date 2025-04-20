@@ -4,7 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b5fc0ac-524c-4718-b6c2-54542fcc8932" name="Changes" comment="" />
+    <list default="true" id="9b5fc0ac-524c-4718-b6c2-54542fcc8932" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Agencia/AgenciaBinarioIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Agencia/GeradorAgencias.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Agencia/TesteAgenciaBinario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/CarregadorAgencias.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/ClienteBinarioIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/GeradorClientes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/TesteClienteComAgenciasExistentes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/CarregadorClientes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/ContaBancariaBinarioIO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/GeradorContasBancarias.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/TesteContasBancarias.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaInicialCliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaInicialContaBancaria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaLoginConta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dados/agencias.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dados/clientes.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Agencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Agencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/ContaBancaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaBancaria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaCorrente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/ContaPoupanca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaPoupanca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/ContaSalario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaSalario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Gerente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dados/agencias.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dados/clientes.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dados/contas.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dados/funcionarios.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dados/gerentes.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/BancoDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistencia/BancoDados.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/GeradorArquivosBinarios.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/GeradorDadosAgencias.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/GeradorDadosClientes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/PersistenciaDados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/TesteDados.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/JanelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/TelaCadastroCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaCadastroCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/TelaCadastroConta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaCadastroConta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/TelaInicial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/TelaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaClienteLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/TelaOperacoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaOperacoes.java" afterDir="false" />
+    </list>
     <list id="0ac2626f-3ce3-4e7f-a84d-4a3b502a69bb" name="Changes by matii" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,13 +87,18 @@
     &quot;Application.TelaInicial.executor&quot;: &quot;Run&quot;,
     &quot;Application.Testar.executor&quot;: &quot;Run&quot;,
     &quot;Application.Testar_DB.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TesteAgenciaBinario.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TesteClienteBinario.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TesteClienteComAgenciasExistentes.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TesteContasBancarias.executor&quot;: &quot;Run&quot;,
     &quot;Application.TesteDados.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VisualizadorAgencias.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/felip/Desktop/Trabalho&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/felip/Desktop/Escolas e Cursos/FACOM31306_t2_felipe.silva7/Trabalho&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -66,6 +115,11 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\felip\Desktop\Escolas e Cursos\FACOM31306_t2_felipe.silva7\Trabalho\src\Persistencia" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="JanelaPrincipal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Telas.JanelaPrincipal" />
@@ -103,6 +157,11 @@
       <workItem from="1744480967069" duration="9803000" />
       <workItem from="1744554085370" duration="7923000" />
       <workItem from="1744563000644" duration="610000" />
+      <workItem from="1744624984679" duration="1776000" />
+      <workItem from="1744627035574" duration="644000" />
+      <workItem from="1744627890119" duration="5086000" />
+      <workItem from="1744824912977" duration="1505000" />
+      <workItem from="1745157911391" duration="8822000" />
     </task>
     <servers />
   </component>

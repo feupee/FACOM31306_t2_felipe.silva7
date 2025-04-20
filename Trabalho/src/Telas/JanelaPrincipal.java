@@ -1,9 +1,12 @@
 package Telas;
 
-import Persistencia.BancoDados;
+import Telas.Cliente.TelaInicialCliente;
+
+import static Persistencia.BancoDados.carregarTudo;
 
 public class JanelaPrincipal {
     public static void main(String[] args) {
-        new TelaInicial();
+        carregarTudo();
+        new TelaInicialCliente();
     }
 }

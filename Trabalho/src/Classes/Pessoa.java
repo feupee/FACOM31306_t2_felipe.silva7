@@ -5,15 +5,13 @@ import ExceptionsAndInterfaces.ValorInvalidoException;
 import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Pessoa implements Serializable {
+public abstract class Pessoa{
     private String CPF;
     private String nome;
     private String endereco_completo;
     private String estado_civil;
     private String escolaridade;
     private Date data_nascimento;
-
-    private static final long serialVersionUID = 1L;
 
     public Pessoa(String CPF, String nome, String endereco_completo, String estado_civil, String escolaridade, Date data_nascimento) throws ValorInvalidoException {
         if (!ValidadorCPF.validarCPF(CPF)) {

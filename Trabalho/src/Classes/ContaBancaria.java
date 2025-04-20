@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class ContaBancaria implements Imprimivel, Serializable {
+public abstract class ContaBancaria implements Imprimivel{
     protected String numeroConta;
     protected double saldo;
     protected Date dataAbertura;
@@ -19,7 +19,6 @@ public abstract class ContaBancaria implements Imprimivel, Serializable {
     protected Cliente[] clientes = new Cliente[2]; //É possível ter dois clientes associados à mesma conta. Um mesmo cliente pode ter diferentes contas bancárias.
     protected Agencia agencia;
 
-    private static final long serialVersionUID = 1L;
 
     public ContaBancaria(String numeroConta, double saldoInicial, Date dataAbertura, String Senha, boolean status, Cliente cliente, Agencia agencia) {
         this.numeroConta = numeroConta;
@@ -155,6 +154,38 @@ public abstract class ContaBancaria implements Imprimivel, Serializable {
 
     public void setTransacoes(List<Transacao> transacoes) {
         this.transacoes = transacoes;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Cliente[] getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(Cliente[] clientes) {
+        this.clientes = clientes;
+    }
+
+    public Agencia getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(Agencia agencia) {
+        this.agencia = agencia;
     }
 
     // Metodo para enviar notificacoes apos a transacao

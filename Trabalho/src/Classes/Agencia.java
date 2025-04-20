@@ -2,7 +2,7 @@ package Classes;
 
 import java.io.Serializable;
 
-public class Agencia implements Serializable {
+public class Agencia{
     private String NmrAgencia;
     private String NmAgencia;
     private String endereco;
@@ -11,8 +11,6 @@ public class Agencia implements Serializable {
     private String bairro;
     private Gerente gerente;
     private Funcionario[] funcionarios;
-
-    private static final long serialVersionUID = 1L;
 
     public Agencia(String nmrAgencia, String nmAgencia, String endereco, String cidade, String estado, String bairro, Gerente gerente, Funcionario[] funcionarios) {
         NmrAgencia = nmrAgencia;

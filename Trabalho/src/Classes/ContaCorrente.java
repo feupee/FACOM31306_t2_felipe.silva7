@@ -5,12 +5,11 @@ import ExceptionsAndInterfaces.Imprimivel;
 import java.io.Serializable;
 import java.util.Date;
 
-public class ContaCorrente extends ContaBancaria implements Imprimivel, Serializable {
+public class ContaCorrente extends ContaBancaria implements Imprimivel{
     private double limite_chequeEspecial;
     private double valor_taxaAdministrativa;
     private String NrmConta;
 
-    private static final long serialVersionUID = 1L;
 
     public ContaCorrente(String numeroConta, double saldoInicial, Date dataAbertura, double limite_chequeEspecial, double valor_taxaAdministrativa, String NrmConta, String Senha, boolean status, Agencia agencia, Cliente cliente) {
         super(numeroConta, saldoInicial, dataAbertura, Senha, status, cliente, agencia);

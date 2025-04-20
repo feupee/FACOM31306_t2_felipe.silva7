@@ -1,4 +1,4 @@
-package Telas;
+package Telas.Conta;
 
 import javax.swing.*;
 import java.awt.*;
