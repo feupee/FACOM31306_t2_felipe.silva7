@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Cliente extends Pessoa implements Imprimivel{
-    private Agencia agencia; // Associação com a agência
+    private static Agencia agencia; // Associação com a agência
     // CPF,
     // nome,
     // endereço completo,
@@ -38,7 +38,7 @@ public class Cliente extends Pessoa implements Imprimivel{
         System.out.println("Endereço: " + getEndereco_completo());
     }
 
-    public Agencia getAgencia() {
+    public static Agencia getAgencia() {
         return agencia;
     }
 

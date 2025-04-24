@@ -1,5 +1,6 @@
 package Classes;
 
+import ExceptionsAndInterfaces.Imprimivel;
 import ExceptionsAndInterfaces.ValorInvalidoException;
 
 import java.io.Serializable;

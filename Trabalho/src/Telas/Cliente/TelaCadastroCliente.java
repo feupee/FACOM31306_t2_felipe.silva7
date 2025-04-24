@@ -1,5 +1,11 @@
 package Telas.Cliente;
 
+import Classes.Agencia;
+import Classes.Cliente;
+import ExceptionsAndInterfaces.ValorInvalidoException;
+import Persistencia.BancoDados;
+import Telas.SwingUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,20 +14,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import Classes.Agencia;
-import Classes.Cliente;
-import ExceptionsAndInterfaces.ValorInvalidoException;
-import Persistencia.BancoDados;
-
 import static Classes.ValidadorCPF.validarCPF;
 
 public class TelaCadastroCliente extends JFrame {
-    private JTextField txtCpf;
-    private JTextField txtNome;
-    private JTextField txtEndereco;
+    private JTextField txtCpf, txtNome, txtEndereco, txtEscolaridade;
     private JComboBox<String> comboEstadoCivil;
-    private JTextField txtEscolaridade;
     private JFormattedTextField txtDataNascimento;
     private JComboBox<Agencia> comboAgencias;
 
@@ -30,84 +27,67 @@ public class TelaCadastroCliente extends JFrame {
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout(10, 10));
 
-        // Painel principal
-        JPanel panelPrincipal = new JPanel();
-        panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
-        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // Layout principal
+        JPanel mainPanel = SwingUtils.criarPainelPrincipal();
 
-        // Painel de dados do cliente
-        JPanel panelDados = new JPanel(new GridLayout(0, 2, 5, 5));
+        // Painel de dados
+        JPanel panelDados = new JPanel(new GridLayout(0, 2, 5, 10));
         panelDados.setBorder(BorderFactory.createTitledBorder("Dados Pessoais"));
-
-        // Adicionando componentes
         adicionarComponentes(panelDados);
-        panelPrincipal.add(panelDados);
 
-        // Botões
+        // Painel de botões
         JPanel panelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        JButton btnConfirmar = new JButton("Confirmar Cadastro");
-        btnConfirmar.addActionListener(new ConfirmarCadastroListener());
+        JButton btnConfirmar = SwingUtils.criarBotaoEstilizado("Confirmar");
+        JButton btnCancelar = SwingUtils.criarBotaoEstilizado("Cancelar", Color.RED, Color.WHITE);
 
-        JButton btnCancelar = new JButton("Cancelar");
+        // Configuração dos componentes
+        mainPanel.add(panelDados);
+        panelBotoes.add(btnConfirmar);
+        panelBotoes.add(btnCancelar);
+
+        // Listeners
+        btnConfirmar.addActionListener(new ConfirmarCadastroListener());
         btnCancelar.addActionListener(e -> {
             new TelaInicialCliente().setVisible(true);
             dispose();
         });
 
-        panelBotoes.add(btnConfirmar);
-        panelBotoes.add(btnCancelar);
-
-        add(panelPrincipal, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
         add(panelBotoes, BorderLayout.SOUTH);
-
-        setVisible(true); // Garante que a tela será exibida
+        setVisible(true);
     }
 
     private void adicionarComponentes(JPanel panel) {
-        // CPF
         panel.add(new JLabel("CPF:"));
         txtCpf = new JTextField();
         panel.add(txtCpf);
 
-        // Nome
         panel.add(new JLabel("Nome Completo:"));
         txtNome = new JTextField();
         panel.add(txtNome);
 
-        // Endereço
-        panel.add(new JLabel("Endereço Completo:"));
+        panel.add(new JLabel("Endereço:"));
         txtEndereco = new JTextField();
         panel.add(txtEndereco);
 
-        // Estado Civil
         panel.add(new JLabel("Estado Civil:"));
-        comboEstadoCivil = new JComboBox<>(new String[]{
-                "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)", "Separado(a)"
-        });
+        comboEstadoCivil = new JComboBox<>(new String[]{"Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)", "Separado(a)"});
         panel.add(comboEstadoCivil);
 
-        // Escolaridade
         panel.add(new JLabel("Escolaridade:"));
         txtEscolaridade = new JTextField();
         panel.add(txtEscolaridade);
 
-        // Data de Nascimento
-        panel.add(new JLabel("Data de Nascimento (dd/MM/yyyy):"));
+        panel.add(new JLabel("Data Nascimento (dd/MM/yyyy):"));
         txtDataNascimento = new JFormattedTextField(new SimpleDateFormat("dd/MM/yyyy"));
         panel.add(txtDataNascimento);
 
-        // Agência
-        // Agência
         panel.add(new JLabel("Agência:"));
         comboAgencias = new JComboBox<>();
-
-        // Configurar o renderizador personalizado
         comboAgencias.setRenderer(new DefaultListCellRenderer() {
             @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof Agencia) {
                     Agencia agencia = (Agencia) value;
@@ -116,25 +96,14 @@ public class TelaCadastroCliente extends JFrame {
                 return this;
             }
         });
-
-        // Carregar as agências no combo box
         carregarAgenciasNoCombo();
-
         panel.add(comboAgencias);
     }
 
-    // Método para carregar as agências no JComboBox
     private void carregarAgenciasNoCombo() {
-        // Limpar o combo box antes de carregar
         comboAgencias.removeAllItems();
-
-        // Obter todas as agências do banco de dados
         List<Agencia> agencias = BancoDados.getTodasAgencias();
-
-        // Adicionar cada agência ao combo box
-        for (Agencia agencia : agencias) {
-            comboAgencias.addItem(agencia);
-        }
+        agencias.forEach(comboAgencias::addItem);
     }
 
     private class ConfirmarCadastroListener implements ActionListener {
@@ -145,14 +114,11 @@ public class TelaCadastroCliente extends JFrame {
                 Cliente novoCliente = criarCliente();
                 BancoDados.adicionarCliente(novoCliente);
 
-                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!",
-                        "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 new TelaInicialCliente().setVisible(true);
                 dispose();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(),
-                        "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -162,11 +128,9 @@ public class TelaCadastroCliente extends JFrame {
                     txtDataNascimento.getText().isEmpty()) {
                 throw new Exception("Todos os campos são obrigatórios!");
             }
-
             if (!validarCPF(txtCpf.getText())) {
                 throw new Exception("CPF inválido!");
             }
-
             if (comboAgencias.getSelectedItem() == null) {
                 throw new Exception("Selecione uma agência válida!");
             }
@@ -187,12 +151,5 @@ public class TelaCadastroCliente extends JFrame {
                     agencia
             );
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            TelaCadastroCliente tela = new TelaCadastroCliente();
-            tela.setVisible(true);
-        });
     }
 }

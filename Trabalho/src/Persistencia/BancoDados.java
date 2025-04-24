@@ -121,8 +121,10 @@ public class BancoDados {
         }
     }
 
-    public static void salvarConta(ContaBancaria conta, String tipo, int numeroSequencial) {
-        String nomeArquivo = String.format("dados/conta_%s_%04d.bin", tipo, numeroSequencial);
+    public static void salvarConta(ContaBancaria conta, String tipo) {
+        int proximoNumero = getProximoIdConta(tipo);
+        String nomeArquivo = String.format("dados/conta_%s_%04d.bin", tipo.toLowerCase(), proximoNumero);
+
         try {
             ContaBancariaBinarioIO.salvarConta(conta, nomeArquivo);
         } catch (IOException e) {
@@ -138,15 +140,21 @@ public class BancoDados {
 
     public static int getProximoIdConta(String tipo) {
         int maxId = 0;
-        String prefixo = "conta_" + tipo + "_";
 
         for (ContaBancaria conta : contas) {
-            if (conta instanceof ContaCorrente && tipo.equals("corrente")) {
-                maxId++;
-            } else if (conta instanceof ContaPoupanca && tipo.equals("poupanca")) {
-                maxId++;
-            } else if (conta instanceof ContaSalario && tipo.equals("salario")) {
-                maxId++;
+            // Assumindo que o número da conta contém o ID sequencial
+            // Exemplo: "CORRENTE_0045" ou "POUPANCA_0123"
+            String[] partes = conta.getNumeroConta().split("_");
+
+            if (partes.length == 2 && partes[0].equalsIgnoreCase(tipo)) {
+                try {
+                    int idAtual = Integer.parseInt(partes[1]);
+                    if (idAtual > maxId) {
+                        maxId = idAtual;
+                    }
+                } catch (NumberFormatException e) {
+                    // Ignora números mal formatados
+                }
             }
         }
 
@@ -189,6 +197,25 @@ public class BancoDados {
             tipo = "salario";
         }
 
-        salvarConta(conta, tipo, getProximoIdConta(tipo));
+        salvarConta(conta, tipo);
     }
+
+    public static Cliente buscarClientePorCPF(String cpf) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCPF().equals(cpf)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public static ContaBancaria buscarContaPorNum(String numero) {
+        for (ContaBancaria conta : contas) {
+            if (conta.getNumeroConta().equals(numero)) {
+                return conta;
+            }
+        }
+        return null; // conta não encontrada
+    }
+
 }

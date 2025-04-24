@@ -53,7 +53,7 @@ public class GeradorContasBancarias {
         }
     }
 
-    private static String gerarNumeroConta() {
+    public static String gerarNumeroConta() {
         return String.format("%04d%06d",
                 random.nextInt(10000), // agência (4 dígitos)
                 random.nextInt(1000000) // conta (6 dígitos)

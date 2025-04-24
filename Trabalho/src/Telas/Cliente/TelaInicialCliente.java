@@ -1,65 +1,70 @@
 package Telas.Cliente;
 
+import Telas.SwingUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TelaInicialCliente extends JFrame {
     public TelaInicialCliente() {
         setTitle("Bem-vindo ao Banco");
-        setSize(350, 200);
+        setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // Painel principal com layout vertical
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        // Painel principal com BoxLayout para alinhamento vertical
+        JPanel mainPanel = SwingUtils.criarPainelPrincipal();
+
+        // Título centralizado
+        JLabel lblTitulo = SwingUtils.criarLabelTitulo("Bem-vindo ao Banco");
+        lblTitulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        mainPanel.add(lblTitulo);
+        mainPanel.add(Box.createVerticalStrut(30));
+
+        // Painel para agrupar os botões com alinhamento central
+        JPanel panelBotoes = new JPanel();
+        panelBotoes.setLayout(new BoxLayout(panelBotoes, BoxLayout.Y_AXIS));
+        panelBotoes.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Painel para clientes existentes
-        JPanel panelClientes = new JPanel();
-        panelClientes.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panelClientes.add(new JLabel("Se for cliente: "));
-        JButton btnClienteLogin = new JButton("Login");
-        panelClientes.add(btnClienteLogin);
+        JPanel panelLogin = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        panelLogin.add(new JLabel("Se for cliente: "));
+        JButton btnLogin = SwingUtils.criarBotaoEstilizado("Login");
+        panelLogin.add(btnLogin);
 
         // Painel para novos clientes
-        JPanel panelNovosClientes = new JPanel();
-        panelNovosClientes.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panelNovosClientes.add(new JLabel("Se não for cliente: "));
-        JButton btnClienteCadastro = new JButton("Cadastrar");
-        panelNovosClientes.add(btnClienteCadastro);
+        JPanel panelCadastro = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        panelCadastro.add(new JLabel("Se não for cliente: "));
+        JButton btnCadastro = SwingUtils.criarBotaoEstilizado("Cadastrar");
+        panelCadastro.add(btnCadastro);
 
-        // Adicionar os painéis ao painel principal
-        mainPanel.add(Box.createVerticalStrut(25));
-        mainPanel.add(panelClientes);
-        mainPanel.add(panelNovosClientes);
+        // Adiciona os painéis ao grupo principal
+        panelBotoes.add(panelLogin);
+        panelBotoes.add(Box.createVerticalStrut(15));
+        panelBotoes.add(panelCadastro);
 
-        // Adicionar o painel principal à janela
+        // Centraliza o painel de botões
+        JPanel panelCentral = new JPanel();
+        panelCentral.setLayout(new BoxLayout(panelCentral, BoxLayout.X_AXIS));
+        panelCentral.add(Box.createHorizontalGlue());
+        panelCentral.add(panelBotoes);
+        panelCentral.add(Box.createHorizontalGlue());
+
+        mainPanel.add(panelCentral);
         add(mainPanel);
 
-        btnClienteCadastro.addActionListener(btnClienteCadastro());
-        btnClienteLogin.addActionListener(btnClienteLogin());
+        // Listeners
+        btnCadastro.addActionListener((ActionEvent e) -> {
+            new TelaCadastroCliente();
+            dispose();
+        });
+
+        btnLogin.addActionListener((ActionEvent e) -> {
+            new TelaClienteLogin();
+            dispose();
+        });
 
         setVisible(true);
     }
-
-    private ActionListener btnClienteCadastro() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new TelaCadastroCliente();
-            }
-        };
-    }
-
-    private ActionListener btnClienteLogin() {
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new TelaClienteLogin();
-            }
-        };
-    }
-
 }

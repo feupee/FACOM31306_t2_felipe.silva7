@@ -5,49 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b5fc0ac-524c-4718-b6c2-54542fcc8932" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Agencia/AgenciaBinarioIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Agencia/GeradorAgencias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Agencia/TesteAgenciaBinario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/CarregadorAgencias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/ClienteBinarioIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/GeradorClientes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Cliente/TesteClienteComAgenciasExistentes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/CarregadorClientes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/ContaBancariaBinarioIO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/GeradorContasBancarias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Persistencia/Conta/TesteContasBancarias.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaInicialCliente.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaInicialContaBancaria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaLoginConta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/Operacoes/TelaDeposito.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/Operacoes/TelaOperacoes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/Operacoes/TelaSaldo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/Operacoes/TelaSaque.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/Operacoes/TelaTransferencia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/TelaCadastroConta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/TelaInicialContaBancaria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/ContaBancaria/TelaLoginConta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Telas/SwingUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dados/agencias.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dados/clientes.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Agencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Agencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dados/conta_corrente_0001.bin" beforeDir="false" afterPath="$PROJECT_DIR$/dados/conta_corrente_0001.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/ContaBancaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaBancaria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaCorrente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/ContaPoupanca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaPoupanca.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/ContaSalario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/ContaSalario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Gerente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Classes/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dados/agencias.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dados/clientes.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dados/contas.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dados/funcionarios.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dados/gerentes.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Persistencia/BancoDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistencia/BancoDados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Persistencia/GeradorArquivosBinarios.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Persistencia/GeradorDadosAgencias.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Persistencia/GeradorDadosClientes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Persistencia/PersistenciaDados.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Persistencia/TesteDados.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Telas/JanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/JanelaPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Telas/TelaCadastroCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaCadastroCliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Telas/TelaCadastroConta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaCadastroConta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Telas/TelaInicial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Telas/TelaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaClienteLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Telas/TelaOperacoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Conta/TelaOperacoes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Persistencia/Conta/GeradorContasBancarias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Persistencia/Conta/GeradorContasBancarias.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Cliente/TelaCadastroCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaCadastroCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Cliente/TelaClienteLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaClienteLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Cliente/TelaInicialCliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Telas/Cliente/TelaInicialCliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Conta/TelaCadastroConta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Conta/TelaInicialContaBancaria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Conta/TelaLoginConta.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Telas/Conta/TelaOperacoes.java" beforeDir="false" />
     </list>
     <list id="0ac2626f-3ce3-4e7f-a84d-4a3b502a69bb" name="Changes by matii" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +66,7 @@
     &quot;Application.JanelaPrincipal.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.TelaInicial.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TelaInicialContaBancaria.executor&quot;: &quot;Run&quot;,
     &quot;Application.Testar.executor&quot;: &quot;Run&quot;,
     &quot;Application.Testar_DB.executor&quot;: &quot;Run&quot;,
     &quot;Application.TesteAgenciaBinario.executor&quot;: &quot;Run&quot;,
@@ -162,6 +144,10 @@
       <workItem from="1744627890119" duration="5086000" />
       <workItem from="1744824912977" duration="1505000" />
       <workItem from="1745157911391" duration="8822000" />
+      <workItem from="1745362924502" duration="8978000" />
+      <workItem from="1745429719331" duration="4357000" />
+      <workItem from="1745440251128" duration="4048000" />
+      <workItem from="1745523782463" duration="1205000" />
     </task>
     <servers />
   </component>

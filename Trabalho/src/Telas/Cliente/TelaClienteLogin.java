@@ -1,68 +1,80 @@
 package Telas.Cliente;
 
+import Classes.Agencia;
 import Classes.Cliente;
-import Classes.ContaBancaria;
 import Persistencia.BancoDados;
-import Telas.Conta.TelaInicialContaBancaria;
+import Telas.ContaBancaria.TelaInicialContaBancaria;
+import Telas.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-// Tela 4: Tela de Login com nome da conta e senha
 public class TelaClienteLogin extends JFrame {
     public TelaClienteLogin() {
         setTitle("Login da Conta");
-        setSize(300, 200);
+        setSize(350, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(3, 2, 5, 5));
 
-        add(new JLabel("Nome da Conta:"));
+        // Painel principal
+        JPanel mainPanel = SwingUtils.criarPainelPrincipal();
+
+        // Campos de login
+        JPanel panelCampos = new JPanel(new GridLayout(2, 2, 5, 15));
+        panelCampos.add(new JLabel("Nome:"));
         JTextField txtNomeConta = new JTextField();
-        add(txtNomeConta);
+        panelCampos.add(txtNomeConta);
 
-        add(new JLabel("Senha:"));
-        JTextField txtSenha = new JTextField();
-        add(txtSenha);
+        panelCampos.add(new JLabel("CPF:"));
+        JPasswordField txtSenha = new JPasswordField();
+        panelCampos.add(txtSenha);
 
-        JButton btnEntrar = new JButton("Entrar");
+        mainPanel.add(panelCampos);
+        mainPanel.add(Box.createVerticalStrut(20));
+
+        // Painel de botões
+        JPanel panelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        JButton btnEntrar = SwingUtils.criarBotaoEstilizado("Entrar");
+        JButton btnVoltar = SwingUtils.criarBotaoEstilizado("Voltar", Color.GRAY, Color.WHITE);
+
+        panelBotoes.add(btnEntrar);
+        panelBotoes.add(btnVoltar);
+        mainPanel.add(panelBotoes);
+
+        // Listeners
         btnEntrar.addActionListener(e -> {
-            String nomeConta = txtNomeConta.getText();
-            String CPF = new String(txtSenha.getText());
+            String nomeCliente = txtNomeConta.getText();
+            String CPF = new String(txtSenha.getPassword());
 
-            if (verificarLogin(nomeConta, CPF)) {
+            if (verificarLogin(nomeCliente, CPF)) {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso!");
-                new TelaInicialContaBancaria();
+                Cliente cliente = BancoDados.buscarClientePorCPF(CPF);
+                Agencia agencia = cliente.getAgencia();
+                new TelaInicialContaBancaria(cliente, agencia);
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Nome da conta ou senha incorretos.");
+                JOptionPane.showMessageDialog(null, "Nome ou CPF incorretos.");
             }
         });
-        add(btnEntrar);
 
-        JButton btnVoltar = new JButton("Voltar");
         btnVoltar.addActionListener(e -> {
             new TelaInicialCliente();
             dispose();
         });
-        add(btnVoltar);
 
+        add(mainPanel);
         setVisible(true);
-
     }
 
     private boolean verificarLogin(String nomeCliente, String CPF) {
         List<Cliente> clientes = BancoDados.getTodosClientes();
-
         for (Cliente c : clientes) {
-            // Verifica se o nome e CPF correspondem (ignorando maiúsculas/minúsculas e espaços)
             if (c.getNome().equalsIgnoreCase(nomeCliente.trim()) &&
                     c.getCPF().replaceAll("[^0-9]", "").equals(CPF.replaceAll("[^0-9]", ""))) {
-                return true; // Login válido
+                return true;
             }
         }
-
-        return false; // Nenhum cliente encontrado com esses dados
+        return false;
     }
 }

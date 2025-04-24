@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class ContaBancaria implements Imprimivel{
+public abstract class ContaBancaria {
     protected String numeroConta;
     protected double saldo;
     protected Date dataAbertura;
